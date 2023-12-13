@@ -1,0 +1,12 @@
+[Unit]
+Description=Telegram WakaBot
+After=syslog.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/opt/wakabot/
+ExecStart=/opt/wakabot/wakabot
+
+[Install]
+WantedBy=multi-user.target
