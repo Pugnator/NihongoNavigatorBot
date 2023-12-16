@@ -1,0 +1,3 @@
+#pragma once
+
+#define TOKEN_CONTENT "@TOKEN_CONTENT@"

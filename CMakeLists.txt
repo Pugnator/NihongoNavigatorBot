@@ -20,10 +20,20 @@ set(CFLAGS "${CFLAGS} ${OPTIM}")
 set(CXXFLAGS "${CXXFLAGS} ${OPTIM}")
 
 if(PRODUCTION_BUILD)
-    file(READ "token_prod.txt" TOKEN_CONTENT)
-else()    
-    file(READ "token.txt" TOKEN_CONTENT)
+    if(EXISTS "${CMAKE_SOURCE_DIR}/token_prod.txt")
+        file(READ "token_prod.txt" TOKEN_CONTENT)
+    else()
+        set(TOKEN_CONTENT "EMPTY_TOKEN")
+    endif()
+else()
+    if(EXISTS "${CMAKE_SOURCE_DIR}/token.txt")
+        file(READ "token.txt" TOKEN_CONTENT)
+    else()
+        set(TOKEN_CONTENT "EMPTY_TOKEN")
+    endif()
 endif()
+
+configure_file("config.h.in" "config.h")
 
 add_definitions(-DWAKABOT_TOKEN="${TOKEN_CONTENT}")
 
