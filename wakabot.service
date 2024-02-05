@@ -5,7 +5,12 @@ After=syslog.target
 [Service]
 Type=simple
 Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=wakabot
 WorkingDirectory=/opt/wakabot/
+Environment=LD_LIBRARY_PATH=/opt/wakabot
 ExecStart=/opt/wakabot/wakabot
 
 [Install]
